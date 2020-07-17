@@ -106,10 +106,3 @@ func (m *DBModel) GetColumns(dbName, tableName string) ([]*TableColumn, error) {
 
 	return columns, nil
 }
-
-if err != nil {
-			columns = append(columns, &column)
-		}
-	}
-	return columns, nil
-}
