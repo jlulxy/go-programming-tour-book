@@ -1,13 +1,14 @@
 package main
 
-import(
-  "log"
-  "github.com/jlulxy/go-programming-tour-book/tree/master/tour/cmd"
+import (
+	"log"
+
+	"github.com/jlulxy/go-programming-tour-book/tour/cmd"
 )
 
-func main(){
-  err := cmd.Execute()
-  if err != nil {
-    log.Fatalf("cmd.Execute err :%v",err)
-  }
+func main() {
+	err := cmd.Execute()
+	if err != nil {
+		log.Fatalf("cmd.Execute err :%v", err)
+	}
 }

@@ -5,7 +5,7 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/jlulxy/go-programming-tour-book/tree/master/tour/internal/word"
+	"github.com/jlulxy/go-programming-tour-book/tour/internal/word"
 )
 
 const structTpl = `type {{.TableName | ToCamelCase}} struct {

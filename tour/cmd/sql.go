@@ -3,7 +3,7 @@ package cmd
 import (
 	"log"
 
-	"github.com/jlulxy/go-programming-tour-book/tree/master/tour/internal/sql2struct"
+	"github.com/jlulxy/go-programming-tour-book/tour/internal/sql2struct"
 
 	"github.com/spf13/cobra"
 )

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jlulxy/go-programming-tour-book/tree/master/tour/internal/timer"
+	"github.com/jlulxy/go-programming-tour-book/tour/internal/timer"
 	"github.com/spf13/cobra"
 )
 
