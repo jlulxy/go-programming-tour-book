@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/jlulxy/go-programming-tour-book/blog-service/internal/model"
+
 	"github.com/jlulxy/go-programming-tour-book/blog-service/global"
 
 	"github.com/jlulxy/go-programming-tour-book/blog-service/pkg/setting"
@@ -16,6 +18,10 @@ func init() {
 	err := setupSetting()
 	if err != nil {
 		log.Fatalf("init.setupSeting err :%v", err)
+	}
+	err = setupDBEngine()
+	if err != nil {
+		log.Fatalf("init.setupDBengine err: %v", err)
 	}
 }
 func main() {
@@ -35,19 +41,28 @@ func setupSetting() error {
 	if err != nil {
 		return err
 	}
-	err = setting.ReadSection("Server", global.ServerSetting)
+	err = setting.ReadSection("Server", &global.ServerSetting)
 	if err != nil {
 		return err
 	}
-	err = setting.ReadSection("App", global.AppSetting)
+	err = setting.ReadSection("App", &global.AppSetting)
 	if err != nil {
 		return err
 	}
-	err = setting.ReadSection("DataBase", global.DataBaseSetting)
+	err = setting.ReadSection("DataBase", &global.DataBaseSetting)
 	if err != nil {
 		return err
 	}
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
+	return nil
+}
+
+func setupDBEngine() error {
+	var err error
+	global.DBEngine, err = model.NewDBEngine(global.DataBaseSetting)
+	if err != nil {
+		return err
+	}
 	return nil
 }
