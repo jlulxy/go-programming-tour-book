@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net/http"
 	"time"
@@ -34,6 +33,11 @@ func init() {
 
 	}
 }
+
+// @title 博客系统
+// @version 1.0
+// @description  学习go和gin的博客系统
+// @termsOfService https://github.com/jlulxy/go-programming-tour-book/tree/master/blog-service
 func main() {
 	router := routers.NewRouter()
 	s := &http.Server{
@@ -43,8 +47,6 @@ func main() {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
-	ctx := context.Background()
-	global.Logger.Infof(ctx, "%s:go-test-log:%s", "yvanli", "blog-servie")
 	s.ListenAndServe()
 }
 

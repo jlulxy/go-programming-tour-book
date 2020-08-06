@@ -63,4 +63,5 @@ func (e *Error) StatusCode() int {
 	case TooManyRequest.Code():
 		return http.StatusTooManyRequests
 	}
+	return http.StatusOK
 }
