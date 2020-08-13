@@ -12,7 +12,6 @@ require (
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/jinzhu/gorm v1.9.15
 	github.com/json-iterator/go v1.1.10 // indirect
-	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/spf13/viper v1.7.0
 	github.com/swaggo/gin-swagger v1.2.0
