@@ -1,7 +1,6 @@
 package model
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 )
 
@@ -15,7 +14,15 @@ func (t Tag) TableName() string {
 	return "blog_tag"
 }
 
-func (t Tag) Get(c *gin.Context) {}
+func (t Tag) Get(db *gorm.DB) (Tag, error) {
+	var tag Tag
+	err := db.Where("id = ? AND is_del = ? AND state = ?", t.ID, 0, t.State).First(&tag).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return tag, err
+	}
+	return tag, nil
+
+}
 
 func (t Tag) Count(db *gorm.DB) (int, error) {
 	var count int
@@ -39,6 +46,16 @@ func (t Tag) List(db *gorm.DB, pageOffset, pageSize int) ([]*Tag, error) {
 		db = db.Where("name = ?", t.Name)
 	}
 	if err = db.Where("is_del = ?", 0).Find(&tags).Error; err != nil {
+		return nil, err
+	}
+	return tags, nil
+}
+
+func (t Tag) ListByIds(db *gorm.DB, ids []uint32) ([]*Tag, error) {
+	var tags []*Tag
+	db.Where("state = ? AND is_del = ?", t.State, 0)
+	err := db.Where("id IN (?)", ids).Find(&tags).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, err
 	}
 	return tags, nil
